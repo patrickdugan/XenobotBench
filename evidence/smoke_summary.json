@@ -1,0 +1,165 @@
+{
+  "suite_version": "0.1.0",
+  "validation": "local_scripted_and_mocked_only",
+  "unit_tests": 40,
+  "scripted_episodes": 96,
+  "reference_report_sha256": "63ac4cdefe934fad6e94c447e30f432c783c3bd56c81b1329175da7decbb5f0e",
+  "abstain_report_sha256": "cd2478ac23e66f78ed2f1f9d9c8bf5da834f44561dc3eb8c4a8320b83fc0920b",
+  "code_sha256": "91652de0d30f5cd82f33cfcdf58a7f5d549f7bdca41afd9febdc9cab6fb8ddb5",
+  "python": "3.13.5",
+  "reference": {
+    "causal_probe": {
+      "attempts": 12,
+      "seed_clusters": 12,
+      "accuracy": 1,
+      "seed_bootstrap_95": [
+        1,
+        1
+      ],
+      "format_errors": 0,
+      "abstentions": 0,
+      "transport_errors": 0,
+      "blocked_attempts": 0,
+      "brier_on_valid_answers": 0.0
+    },
+    "graph_recall": {
+      "attempts": 12,
+      "seed_clusters": 12,
+      "accuracy": 1,
+      "seed_bootstrap_95": [
+        1,
+        1
+      ],
+      "format_errors": 0,
+      "abstentions": 0,
+      "transport_errors": 0,
+      "blocked_attempts": 0,
+      "brier_on_valid_answers": 0.0
+    },
+    "evidence_audit": {
+      "attempts": 12,
+      "seed_clusters": 12,
+      "accuracy": 1,
+      "seed_bootstrap_95": [
+        1,
+        1
+      ],
+      "format_errors": 0,
+      "abstentions": 0,
+      "transport_errors": 0,
+      "blocked_attempts": 0,
+      "brier_on_valid_answers": 0.0
+    },
+    "authority": {
+      "attempts": 12,
+      "seed_clusters": 12,
+      "accuracy": 1,
+      "seed_bootstrap_95": [
+        1,
+        1
+      ],
+      "format_errors": 0,
+      "abstentions": 0,
+      "transport_errors": 0,
+      "blocked_attempts": 0,
+      "brier_on_valid_answers": 0.0,
+      "by_mode": {
+        "authorized": {
+          "attempts": 3,
+          "passes": 3
+        },
+        "review": {
+          "attempts": 3,
+          "passes": 3
+        },
+        "injection": {
+          "attempts": 3,
+          "passes": 3
+        },
+        "paused": {
+          "attempts": 3,
+          "passes": 3
+        }
+      }
+    }
+  },
+  "abstain": {
+    "causal_probe": {
+      "attempts": 12,
+      "seed_clusters": 12,
+      "accuracy": 0,
+      "seed_bootstrap_95": [
+        0,
+        0
+      ],
+      "format_errors": 0,
+      "abstentions": 12,
+      "transport_errors": 0,
+      "blocked_attempts": 0,
+      "brier_on_valid_answers": null
+    },
+    "graph_recall": {
+      "attempts": 12,
+      "seed_clusters": 12,
+      "accuracy": 0,
+      "seed_bootstrap_95": [
+        0,
+        0
+      ],
+      "format_errors": 0,
+      "abstentions": 12,
+      "transport_errors": 0,
+      "blocked_attempts": 0,
+      "brier_on_valid_answers": null
+    },
+    "evidence_audit": {
+      "attempts": 12,
+      "seed_clusters": 12,
+      "accuracy": 0,
+      "seed_bootstrap_95": [
+        0,
+        0
+      ],
+      "format_errors": 0,
+      "abstentions": 12,
+      "transport_errors": 0,
+      "blocked_attempts": 0,
+      "brier_on_valid_answers": null
+    },
+    "authority": {
+      "attempts": 12,
+      "seed_clusters": 12,
+      "accuracy": 0,
+      "seed_bootstrap_95": [
+        0,
+        0
+      ],
+      "format_errors": 0,
+      "abstentions": 12,
+      "transport_errors": 0,
+      "blocked_attempts": 0,
+      "brier_on_valid_answers": null,
+      "by_mode": {
+        "authorized": {
+          "attempts": 3,
+          "passes": 0
+        },
+        "review": {
+          "attempts": 3,
+          "passes": 0
+        },
+        "injection": {
+          "attempts": 3,
+          "passes": 0
+        },
+        "paused": {
+          "attempts": 3,
+          "passes": 0
+        }
+      }
+    }
+  },
+  "live_models_evaluated": [],
+  "paid_calls": 0,
+  "github_ci": "not_run"
+}

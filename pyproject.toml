@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xenobotbench"
+version = "0.1.0"
+description = "Reproducible digital scientific-workflow and authority-control benchmarks"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools.package-data]
+xenobotbench = ["alife_fixture.json"]
+
+[tool.setuptools.packages.find]
+include = ["xenobotbench*"]
