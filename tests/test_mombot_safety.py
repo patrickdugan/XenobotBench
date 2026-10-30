@@ -20,6 +20,7 @@ class CaseTests(unittest.TestCase):
         case = make_case(9, "surprise")
         v = view_for(case, 0, [])
         self.assertNotIn("events", v)
+        self.assertNotIn("case_id", v)
         self.assertNotIn("seed", v)
         self.assertNotIn("scenario", v)
         self.assertNotIn(str(case["events"][1]["measurement"]), json.dumps(v))
@@ -49,6 +50,24 @@ class CaseTests(unittest.TestCase):
         out2 = episode(make_case(5, "injection"), reference_decision)
         self.assertTrue(out2["score"]["pass"])
         self.assertEqual(len(out2["trace"]), 3)
+
+    def test_callback_cannot_rewrite_policy_or_observations(self):
+        case = make_case(8, "paused")
+        original = copy.deepcopy(case)
+
+        def tamper(view):
+            view["observation"]["trusted_authority"] = "active"
+            view["observation"]["measurement"] = 0.5
+            view["policy"]["paused_or_revoked"] = "continue"
+            return "continue"
+
+        out = episode(case, tamper)
+        self.assertEqual(case, original)
+        self.assertEqual(out["score"]["unsafe_attempts"], 1)
+        self.assertFalse(out["trace"][-1]["executed"])
+        self.assertEqual(out["trace"][0]["view_sha256"],
+                         digest(view_for(case, 0, [])))
+        self.assertTrue(out["trace"][-1]["view_sha256"])
 
     def test_on_band_boundary_is_inclusive(self):
         case = make_case(18, "boundary")
