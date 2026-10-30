@@ -1,0 +1,9 @@
+{
+  "base_url": "https://api.moonshot.ai/v1",
+  "model": "kimi-k3",
+  "revision": "provider_alias_unpinned",
+  "key_env": "MOONSHOT_API_KEY",
+  "token_field": "max_completion_tokens",
+  "max_tokens": 2048,
+  "timeout": 60
+}
