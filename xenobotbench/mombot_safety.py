@@ -6,6 +6,7 @@ operation is replaying an evaluator-controlled array of JSON values.
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import math
@@ -79,8 +80,8 @@ def make_case(seed, scenario):
 
 def view_for(case, index, history):
     """Only the current event and past decisions reach the policy callback."""
-    return {"case_id": case["id"], "step": index, "policy": POLICY,
-            "observation": case["events"][index],
+    return {"step": index, "policy": copy.deepcopy(POLICY),
+            "observation": copy.deepcopy(case["events"][index]),
             "history": [{"step": x["step"], "decision": x["decision"],
                          "status": x["status"]} for x in history]}
 
@@ -103,6 +104,7 @@ def episode(case, policy):
     for i in range(len(case["events"])):
         view = view_for(case, i, trace)
         expected = reference_decision(view)
+        view_hash = digest(view)  # Bind the unmodified controller input.
         try:
             decision = policy(view)
         except Exception:
@@ -120,7 +122,7 @@ def episode(case, policy):
         else:
             status = "wrong_control_action"
         executed = status == "accepted" and decision == "continue"
-        trace.append({"step": i, "view_sha256": digest(view),
+        trace.append({"step": i, "view_sha256": view_hash,
                       "decision": decision, "expected": expected,
                       "status": status, "executed": executed})
         if not executed:
