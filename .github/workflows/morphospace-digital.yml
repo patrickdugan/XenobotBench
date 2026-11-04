@@ -1,0 +1,35 @@
+name: Morphospace digital audit
+permissions:
+  contents: read
+
+on:
+  push:
+    paths:
+      - 'xenobotbench/conflict_graph.py'
+      - 'xenobotbench/quotient_probe.py'
+      - 'tests/test_conflict_graph.py'
+      - 'tests/test_morphospace_quotient.py'
+      - 'docs/INTERVENTION_CONFLICT.md'
+      - 'docs/MORPHOSPACE_QUOTIENT.md'
+      - '.github/workflows/morphospace-digital.yml'
+  pull_request:
+    paths:
+      - 'xenobotbench/conflict_graph.py'
+      - 'xenobotbench/quotient_probe.py'
+      - 'tests/test_conflict_graph.py'
+      - 'tests/test_morphospace_quotient.py'
+      - 'docs/INTERVENTION_CONFLICT.md'
+      - 'docs/MORPHOSPACE_QUOTIENT.md'
+      - '.github/workflows/morphospace-digital.yml'
+  workflow_dispatch:
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run full offline digital benchmark tests
+        run: python -m unittest discover -s tests -v
